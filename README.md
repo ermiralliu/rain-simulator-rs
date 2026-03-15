@@ -1,0 +1,1 @@
+The way things currently stand, you will need to build sdl3 and sdl3_image and place it in your C libraries path. I've only tried this in Linux. APT doesn't have sdl3 yet, so I cloned it directly from github.
