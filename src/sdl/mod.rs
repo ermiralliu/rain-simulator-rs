@@ -102,13 +102,5 @@ impl<'sdl> Drop for Renderer<'sdl> {
 
 pub struct Texture<'ren> {
     raw_texture: *mut SDL_Texture,
-    _phantom: PhantomData<&'ren Renderer<'ren>>, // So now, renderer itself obviously has a larger lifetime
-                                                 // and it would be more accurate to put both 'ren and 'sdl as lifetimes, however, that would
-                                                 // just be pointless boilerplate, as the Texture itself will live less than ren so it doesn't
-                                                 // really need to know about larger lifetimes, and the compiler should accept this, as renderer
-                                                 // lives longer than ren.
-                                                 // Maybe I didn't need to do such a detailed explanation but idk
-                                                 // I'm making this too safe already, and lifetimes could be annoying depending on the case, but
-                                                 // this is the only way to avoid dumbass runtime checks and secure this at compile time
-                                                 // I'm striving for good code here.
+    _phantom: PhantomData<&'ren ()>,
 }
